@@ -58,12 +58,12 @@ def view_pending_tasks(tasks_list=tasks):
         print("-" * 25)
 
 # Implement calculate_progress function
-def calculate_progress(tasks=tasks):
-    total_tasks = len(tasks)
+def calculate_progress(tasks_list=tasks):
+    total_tasks = len(tasks_list)
     if total_tasks == 0:
         print("No tasks found! Progress is 0%.")
         return 0
-    completed_count = len([t for t in tasks if t["completed"]])
+    completed_count = len([t for t in tasks_list if t["completed"]])
     progress = (completed_count / total_tasks) * 100
-    print(f"Progress: {completed_count}/{total_tasks} tasks completed({progress:.2f}%)")
-    return progress
+    print(f"Progress: {completed_count}/{total_tasks} tasks completed({progress:.1f}%)")
+    return progress 
