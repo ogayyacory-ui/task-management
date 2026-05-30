@@ -12,7 +12,7 @@ from task_manager.task_utils import (
 from task_manager.validation import (
     validate_task_title, 
     validate_task_description, 
-    validate_due_date
+    validate_task_due_date
 )
 
 def main():
@@ -26,31 +26,38 @@ def main():
         
         choice = input("Enter your choice (1-5): ").strip()
 
+        # Route 1: Add Task with gated pipeline validations
         if choice == "1":
             print("\n--- Create New Task ---")
             title = input("Enter task title: ")
             description = input("Enter task description: ")
             due_date = input("Enter due date (YYYY-MM-DD): ")
             
-            if validate_task_title(title) and validate_task_description(description) and validate_due_date(due_date):
+            if validate_task_title(title) and validate_task_description(description) and validate_task_due_date(due_date):
                 add_task(title, description, due_date)
             else:
                 print("Task creation failed due to validation errors.")
                 
+        # Route 2: Complete Task
         elif choice == "2":
             print("\n--- Complete a Task ---")
             title = input("Enter the exact title of the task to complete: ")
             mark_task_as_complete(title)
 
+        # Route 3: View Pending Tasks
         elif choice == "3":
             view_pending_tasks()
 
+        # Route 4: View System Metric Progress
         elif choice == "4":
             calculate_progress()
 
+        # Route 5: Terminate Loop
         elif choice == "5":
             print("\nExiting the program... Goodbye!")
             break
+            
+        # Fallback entry handling
         else:
             print("\n[!] Invalid choice. Please enter a number between 1 and 5.")
 
