@@ -49,5 +49,5 @@ def calculate_progress(tasks_list=tasks):
         
     completed_count = len([t for t in tasks_list if t["completed"]])
     progress = (completed_count / total_tasks) * 100
-    print(f"Progress: {progress:.2f}%")
+    print(f"{progress:.1f}")
     return int(progress)

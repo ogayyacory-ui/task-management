@@ -28,7 +28,7 @@ def main():
 
         # Route 1: Add Task with gated pipeline validations
         if choice == "1":
-            print("\n--- Create New Task ---")
+            print(" Create New Task")
             title = input("Enter task title: ")
             description = input("Enter task description: ")
             due_date = input("Enter due date (YYYY-MM-DD): ")
