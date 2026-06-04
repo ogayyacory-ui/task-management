@@ -34,7 +34,13 @@ def main():
             description = input("Enter task description: ")
             due_date = input("Enter due date (YYYY-MM-DD): ")
             
-            if validate_task_title(title) and validate_task_description(description) and validate_task_due_date(due_date):
+            try:
+                valid = validate_task_title(title) and validate_task_description(description) and validate_task_due_date(due_date)
+            except ValueError as err:
+                print(err)
+                valid = False
+
+            if valid:
                 add_task(title, description, due_date)
             else:
                 print("Task creation failed due to validation errors.")
@@ -42,7 +48,7 @@ def main():
         # Route 2: Complete Task
         elif choice == "2":
             print("\n--- Complete a Task ---")
-            title = input("Enter the exact title of the task to complete: ")
+            title = input("Enter the task number or exact title to complete: ")
             mark_task_as_complete(title)
 
         # Route 3: View Pending Tasks
