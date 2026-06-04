@@ -4,10 +4,11 @@ Handles the command-line interface loop and routes user menu choices.
 """
 
 from task_manager.task_utils import (
-    add_task, 
-    mark_task_as_complete, 
-    view_pending_tasks, 
-    calculate_progress
+    add_task,
+    mark_task_as_complete,
+    view_pending_tasks,
+    calculate_progress,
+    tasks
 )
 from task_manager.validation import (
     validate_task_title, 
@@ -28,7 +29,7 @@ def main():
 
         # Route 1: Add Task with gated pipeline validations
         if choice == "1":
-            print(" Create New Task")
+            print("\n--- Create New Task ---")
             title = input("Enter task title: ")
             description = input("Enter task description: ")
             due_date = input("Enter due date (YYYY-MM-DD): ")
@@ -50,7 +51,11 @@ def main():
 
         # Route 4: View System Metric Progress
         elif choice == "4":
-            calculate_progress()
+            if len(tasks) == 0:
+                print("No working currently")
+            else:
+                progress = calculate_progress()
+                print(f"Progress: {progress:.1f}%")
 
         # Route 5: Terminate Loop
         elif choice == "5":

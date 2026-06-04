@@ -1,4 +1,3 @@
-from datetime import datetime
 # FIX: Match the exact name 'validate_task_due_date'
 from .validation import validate_task_title, validate_task_description, validate_task_due_date
 
@@ -12,7 +11,7 @@ def add_task(title, description, due_date):
         "completed": False
     }
     tasks.append(new_task)
-    print("Task added successfully")
+    print("Task added successfully!")
     return True
 
 def mark_task_as_complete(title, tasks_list=tasks):
@@ -20,7 +19,7 @@ def mark_task_as_complete(title, tasks_list=tasks):
     for task in tasks_list:
         if task["title"].lower() == target_title:
             task["completed"] = True
-            print("Task marked as complete")
+            print("Task marked as complete!")
             return True
     print("Task not found.")
     return False
@@ -41,13 +40,9 @@ def view_pending_tasks(tasks_list=tasks):
 
 def calculate_progress(tasks_list=tasks):
     total_tasks = len(tasks_list)
-    
-    # FIX: Return an integer 0 instead of a float 0.0 to satisfy the strict autograder match
     if total_tasks == 0:
-        print("No working currently")
-        return 0
-        
+        return 0.0
+
     completed_count = len([t for t in tasks_list if t["completed"]])
     progress = (completed_count / total_tasks) * 100
-    print(f"{progress:.1f}")
-    return int(progress)
+    return float(progress)
